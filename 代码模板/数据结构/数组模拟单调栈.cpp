@@ -1,42 +1,40 @@
 #include <iostream>
 using namespace std;
-#define N 100000
-int my_stack[N],top;
+#define N 1000000
+int stk[N],tt;
 void Init(){
-    top = -1;
-}
-void IfEmpty(){
-    if(top == -1)
-        cout<<"YES"<<endl;
-    else
-        cout<<"NO"<<endl;
-}
-void Push(int x){
-    my_stack[++top]=x;
-}
-void Pop(){
-    my_stack[top--]=0;
-}
-void GetTop(){
-    cout<<my_stack[top]<<endl;
+    tt = -1;
 }
 int main(){
     Init();
     int n;
     cin>>n;
-    while(n--){
-        string c;
-        cin>>c;
-        if(c== "push"){
-            int x;
-            cin>>x;
-            Push(x);
+    for(int i=0;i<n;i++){
+        int x;
+        cin>>x;
+        //假若栈不为空则一直寻找左边比它小的第一个数
+        while(tt>=0&&stk[tt]>=x){
+            tt--;   
         }
-        else if(c == "query")
-            GetTop();
-        else if(c == "pop")
-            Pop();
-        else if(c == "empty")
-            IfEmpty();
+        //成功找到输出
+        if(tt>=0){
+            cout<<stk[tt]<<' ';
+        }
+        //没找到则为-1
+        else{
+            cout<<"-1"<<' ';
+        }
+        //入栈
+        stk[++tt]=x;
     }
 }
+
+/*
+常见模型：找出每个数左边离它最近的比它大/小的数
+int tt = 0;
+for (int i = 1; i <= n; i ++ )
+{
+    while (tt && check(stk[tt], i)) tt -- ;
+    stk[ ++ tt] = i;
+}
+*/

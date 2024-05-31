@@ -48,6 +48,23 @@
 2. 双链表
    [数组模拟双链表模板](./代码模板/数据结构/数组模拟双链表.cpp)
    [827. 双链表](https://www.acwing.com/problem/content/829/)
-3. 栈
-   [数组模拟单调栈模板](./代码模板/数据结构/数组模拟单调栈.cpp)
+### 栈与队列
+1. 栈
+   [数组模拟栈模板](./代码模板/数据结构/数组模拟栈.cpp)
    [828. 栈](https://www.acwing.com/problem/content/830/)
+2. 普通队列
+   [数组模拟普通队列模板](./代码模板/数据结构/数组模拟普通队列.cpp)
+   [829. 队列](https://www.acwing.com/problem/content/831/)
+3. 循环队列
+   [数组模拟循环队列模板](./代码模板/数据结构/数组模拟循环队列.cpp)
+   [829. 队列](https://www.acwing.com/problem/content/831/)
+4. 单调栈
+   [数组模拟单调栈模板](./代码模板/数据结构/数组模拟单调栈.cpp)
+   [830. 单调栈](https://www.acwing.com/problem/content/832/)
+   应用场景比较有限一般用于左边第一个比他小或者比他大的数
+5. 单调队列
+   [数组模拟单调队列模板](./代码模板/数据结构/数组模拟单调队列.cpp)
+   [154. 滑动窗口 ](https://www.acwing.com/problem/content/156/)
+6. KMP
+   [KMP代码模板](./代码模板/数据结构/KMP.cpp)
+   [154. 滑动窗口 ](https://www.acwing.com/problem/content/156/)
