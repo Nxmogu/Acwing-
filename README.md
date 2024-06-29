@@ -65,6 +65,40 @@
 5. 单调队列
    [数组模拟单调队列模板](./代码模板/数据结构/数组模拟单调队列.cpp)
    [154. 滑动窗口 ](https://www.acwing.com/problem/content/156/)
-6. KMP
-   [KMP代码模板](./代码模板/数据结构/KMP.cpp)
-   [154. 滑动窗口 ](https://www.acwing.com/problem/content/156/)
+6. 常用stl简介
+   [KMP代码模板](./代码模板/数据结构/常用stl.md)
+### KMP
+1. 确定next数组
+  next数组是用于记录模板串回溯的大小假设模板串为```T[n]```,则```next[i]```就代表着```T[0...i-1]```的子串的最长公共真前后缀的长度,假设```next[i]=k```,则```T[0...k-1]```与```T[i-k...i-1]```相等。
+  知道以上条件后我们来推推如何通过代码的方式得到整个next数组：
+  首先一定有```next[0]=-1```和```next[1]=0```我们不妨设我们已知```next[i]=k```去求```next[i+1]```
+   * ```T[k]=T[i]```:则易得```next[i+1]=k+1```
+   * ```T[k]!=T[i]```:此时我们记$k_1$=```next[k]```,于是有```T[0...k1-1]=T[k-k1...k-1]```又因为```T[0...k-1]=T[i-k...i-1]```，故有```T[0...k1-1]=T[k-k1...k-1]=T[i−k...i−k+k1​−1]=t[i−k1​...i−1]```,即```T[0...k1−1] = T[i−k1...i−1]```。若```T[k1]```=```T[i]```,则根据情况1，```T[i+1]==K1+1```,否则另$k_2$=```next[k1]```，重复情况2，若在某一步发现$k_n$=-1，则表示已回溯到串头，则```next[i+1]=0```。可得求next数组如下
+   ```
+   vector<int> GetNum(string T){
+         vector<int> next(T.size());
+         next[0]=-1;
+         int k,i=0;
+         while(i<T.size()-1){
+            k=next[i];
+            if(T[i]==T[k]||k==-1){
+                next[i++]=k+1;
+            }
+            else
+                k=next[k];
+         }
+         return next;
+   }
+2. 根据next数组写KMP算法
+```
+int kmp(string &s,string &t) {
+    vector<int> next = GetNext(t);
+    int i = 0,j = 0;
+    while (i < s.size() && j < (int) t.size()) {
+        if (j == -1 || s[i] == t[j]) i++, j++;
+        else j = next[j];
+    }
+    if (j == t.size()) return i - j;
+    else return -1;
+}
+  

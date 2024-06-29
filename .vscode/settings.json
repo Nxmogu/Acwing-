@@ -2,6 +2,7 @@
     "files.associations": {
         "iostream": "cpp",
         "cstdlib": "c",
-        "deque": "cpp"
+        "deque": "cpp",
+        "vector": "cpp"
     }
 }
