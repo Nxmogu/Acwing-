@@ -66,7 +66,7 @@
    [数组模拟单调队列模板](./代码模板/数据结构/数组模拟单调队列.cpp)
    [154. 滑动窗口 ](https://www.acwing.com/problem/content/156/)
 6. 常用stl简介
-   [KMP代码模板](./代码模板/数据结构/常用stl.md)
+   [常用stl](./代码模板/数据结构/常用stl.md)
 ### KMP
 1. 确定next数组
   next数组是用于记录模板串回溯的大小假设模板串为```T[n]```,则```next[i]```就代表着```T[0...i-1]```的子串的最长公共真前后缀的长度,假设```next[i]=k```,则```T[0...k-1]```与```T[i-k...i-1]```相等。
@@ -89,6 +89,7 @@
          }
          return next;
    }
+   ```
 2. 根据next数组写KMP算法
 ```
 int kmp(string &s,string &t) {
@@ -101,4 +102,16 @@ int kmp(string &s,string &t) {
     if (j == t.size()) return i - j;
     else return -1;
 }
-  
+```
+[KMP模板](./代码模板/数据结构/KMP.cpp)
+[831. KMP字符串](https://www.acwing.com/problem/content/833/)  
+[参考博客](https://blog.csdn.net/raelum/article/details/128823560)
+
+### Trie树
+【字典树】(Trie Tree) 是一种树形结构，是一种哈希树的变种。典型应用是用于统计，排序和保存大量的字符串（但不仅限于字符串）。
+它的优点是：利用字符串的公共前缀来减少查询时间，最大限度地减少无谓的字符串比较，查询效率比哈希树高。
+![Trie树](./图片/Trie树.jpg)
+代码模板可看
+[Trie树代码模板](./代码模板/数据结构/Trie树.cpp)
+有插入和寻找两个方法
+[835. Trie字符串统计](https://www.acwing.com/problem/content/837/)
