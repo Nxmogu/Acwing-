@@ -115,3 +115,47 @@ int kmp(string &s,string &t) {
 [Trie树代码模板](./代码模板/数据结构/Trie树.cpp)
 有插入和寻找两个方法
 [835. Trie字符串统计](https://www.acwing.com/problem/content/837/)
+
+### 并查集
+并查集是一种树型的数据结构，用于处理一些不相交集合的合并及查询问题（即所谓的并、查）。比如说，我们可以用并查集来判断一个森林中有几棵树、某个节点是否属于某棵树等。
+
+主要构成：
+并查集主要由一个整型数组pre[ ]和两个函数find( )、join( )构成。
+数组 pre[ ] 记录了每个点的前驱节点是谁，函数 find(x) 用于查找指定节点 x 属于哪个集合，函数 join(x,y) 用于合并两个节点 x 和 y 。
+
+作用：
+并查集的主要作用是求连通分支数（如果一个图中所有点都存在可达关系（直接或间接相连），则此图的连通分支数为1；如果此图有两大子图各自全部可达，则此图的连通分支数为2……）
+
+1. find函数
+```
+int find(int x){
+    if(pre[x]!=x)
+        pre[x] = find(pre[x]);
+    return pre[x];
+}
+```
+这个find函数进行了路径优化，最后所有子节点都会挂载在同一个父节点之下
+![路径优化1](./图片/find函数路径优化.jpg)
+![路径优化2](./图片/find函数路径优化2.jpg)
+1. join函数
+```
+bool join(int x,int y){
+    int pre_x = find(x);
+    int pre_y = find(y);
+    if(pre_x == pre_y)
+        return false;
+    //将节点少的挂在节点多的下面
+    if(my_rank[pre_x]>my_rank[pre_y]){
+        my_rank[pre_x]+=my_rank[pre_y];
+        pre[pre_y] = pre_x;
+    }
+    else{
+        my_rank[pre_y]+=my_rank[pre_x];
+        pre[pre_x] = pre_y;
+    }
+    return true;
+}
+```
+将节点少的分支挂载到节点多的分支下面可以优化寻找
+[并查集代码模板](./代码模板/数据结构/并查集.cpp)
+[837. 连通块中点的数量](https://www.acwing.com/problem/content/839/)
